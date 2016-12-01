@@ -18,7 +18,7 @@ $headers = [
     'Klantnummer: '.$klantNummer,
 	'Authentication: '.sprintf("%s:%s", $apiUser,$baseString)
 ];
-
+print_r($headers);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 echo "test3";
 $server_output = curl_exec ($ch);
@@ -26,5 +26,7 @@ echo "test4";
 curl_close ($ch);
 echo "test5";
 print  $server_output ;
-
+print_r($server_output);
+echo "henk";
+phpinfo();
 ?>

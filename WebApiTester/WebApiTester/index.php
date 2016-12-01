@@ -1,4 +1,5 @@
 <?php
+error_reporting(-1);
 $apiUser = "TEST";
 $apiSecret = "testsleutel";
 $klantNummer = "8700";

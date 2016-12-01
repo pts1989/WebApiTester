@@ -21,11 +21,17 @@ $headers = [
 print_r($headers);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 echo "test3";
+if( ! $result = curl_exec($ch))
+{
+    trigger_error(curl_error($ch));
+}
+
+print_r( $result);
 $server_output = curl_exec ($ch);
 echo "test4";
 curl_close ($ch);
 echo "test5";
-print  $server_output ;
+
 print_r($server_output);
 echo "henk";
 phpinfo();

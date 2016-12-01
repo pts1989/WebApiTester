@@ -6,7 +6,7 @@ $klantNummer = "8700";
 date_default_timezone_set('UTC');
 $datum = date_format(date_create(),"d-m-y G:i:s.u");
 $baseString = sprintf("%s|%s|%s", substr($datum, 0, 8),substr($datum, 9, 12), $klantNummer);
-
+$hmac = base64_encode(hash_hmac("sha256",$baseString,$apiSecret,true));
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL,"https://acceptatie.sdbstart.nl/Start/api/dienstverbanden");
 curl_setopt($ch, CURLOPT_HTTPGET, 1);
@@ -18,7 +18,7 @@ $headers = [
     'Content-Type: application/xml; charset=utf-8',
     'Timestamp: '.$datum,
     'Klantnummer: '.$klantNummer,
-	'Authentication: '.sprintf("%s:%s", $apiUser,$baseString)
+	'Authentication: '.sprintf("%s:%s", $apiUser,$hmac)
 ];
 
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -39,4 +39,5 @@ print_r($server_output);
 print_r($headers);
 print_r($httpCode);
 echo"final";
+echo $hmac;
 ?>

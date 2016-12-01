@@ -1,16 +1,17 @@
 <?php
 error_reporting(E_ALL);
 $apiUser = "TEST";
-$apiSecret = "testsleutel2";
+$apiSecret = "testsleutel";
 $klantNummer = "8700";
 date_default_timezone_set('UTC');
 $datum = date_format(date_create(),"d-m-y G:i:s.u");
 $baseString = sprintf("%s|%s|%s", substr($datum, 0, 8),substr($datum, 9, 12), $klantNummer);
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL,"http://acceptatie.sdbstart.nl/Start/api/dienstverbanden");
+curl_setopt($ch, CURLOPT_URL,"https://acceptatie.sdbstart.nl/Start/api/dienstverbanden");
 curl_setopt($ch, CURLOPT_HTTPGET, 1);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
 
 $headers = [
     'Cache-Control: no-cache',

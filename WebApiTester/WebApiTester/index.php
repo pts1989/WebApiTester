@@ -8,7 +8,7 @@ $baseString = sprintf("%s|%s|%s", substr($datum, 0, 8),substr($datum, 9, 12), $k
 echo "test";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL,"https://acceptatie.sdbstart.nl/Start/api/dienstverbanden");
-curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_HTTPGET, 1);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 echo "test2";
 $headers = [
@@ -25,6 +25,6 @@ $server_output = curl_exec ($ch);
 echo "test4";
 curl_close ($ch);
 echo "test5";
-//print  $server_output ;
+print  $server_output ;
 
 ?>

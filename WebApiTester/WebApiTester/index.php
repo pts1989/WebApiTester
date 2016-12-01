@@ -22,12 +22,12 @@ $headers = [
 
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
 if( ! $result = curl_exec($ch))
 {
     trigger_error(curl_error($ch));
 }
-
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 print_r( $result);
 $server_output = curl_exec ($ch);
 
